@@ -9,9 +9,9 @@
     
     <style>
         :root {
-            /* Novas Cores Artience / Toyo Ink */
+            /* Cores Artience / Toyo Ink */
             --dark-green: #00382B;     
-            --dark-green-grad: #001A14; /* Escureci um pouco mais para dar mais contraste */
+            --dark-green-grad: #001A14;
             --accent-mint: #15A98B;    
             --accent-hover: #0F876E;
             --bg-light: #F8F9FA;
@@ -40,62 +40,34 @@
             position: relative;
         }
 
-        /* Fundo Verde Superior (Efeito Flutuante) */
+        /* Fundo Verde Superior */
         .hero-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 50vh; /* Aumentei a área verde */
+            height: 40vh;
             background: linear-gradient(135deg, var(--dark-green) 0%, var(--dark-green-grad) 100%);
             z-index: -1;
             overflow: hidden;
         }
 
-        /* Efeitos visuais luxuosos no fundo */
-        .hero-background::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle at 50% 50%, rgba(21, 169, 139, 0.08) 0%, transparent 60%);
-            top: -50%;
-            left: -25%;
-            animation: pulse 15s infinite alternate;
-        }
-
-        .hero-background::after {
-            content: '';
-            position: absolute;
-            right: -5%;
-            top: -10%;
-            width: 60vh;
-            height: 60vh;
-            background: radial-gradient(circle, rgba(21, 169, 139, 0.12) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.1); opacity: 1; }
-        }
-
         /* Header / Logo */
         header {
             background-color: var(--white);
-            padding: 25px 0; /* Mais respiro */
+            padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
             position: relative;
             z-index: 10;
-            border-bottom: 4px solid var(--accent-mint); /* Linha de destaque */
+            border-bottom: 4px solid var(--accent-mint);
         }
 
         .logo img {
-            max-height: 110px; /* LOGO BEM MAIOR AQUI! */
+            max-height: 85px; 
             width: auto;
             object-fit: contain;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s ease;
         }
 
         .logo img:hover {
@@ -108,67 +80,81 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 50px 20px;
+            padding: 40px 15px;
             z-index: 5;
         }
 
         .form-container {
             background-color: var(--white);
-            max-width: 680px; /* Um pouco mais largo */
+            max-width: 800px; /* Aumentado para acomodar 2 colunas */
             width: 100%;
-            padding: 55px;
-            border-radius: 24px; /* Mais arredondado = mais amigável e premium */
-            box-shadow: 0 25px 50px -12px rgba(0, 56, 43, 0.25); /* Sombra mais profunda e colorida */
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px -10px rgba(0, 56, 43, 0.2);
             position: relative;
         }
 
-        /* Linha gradiente no topo do card */
         .form-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 8px;
+            height: 6px;
             background: linear-gradient(90deg, var(--accent-mint), var(--dark-green));
-            border-radius: 24px 24px 0 0;
+            border-radius: 20px 20px 0 0;
         }
 
         .form-header {
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
         }
 
         .form-header h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 32px; /* Título Maior e mais impactante */
+            font-size: 28px;
             font-weight: 700;
             color: var(--dark-green);
-            margin-bottom: 12px;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
 
         .form-header p {
             color: var(--text-muted);
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* --- Sistema de Grid para o Formulário --- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colunas */
+            gap: 20px 24px; /* Espaço entre as linhas e colunas */
+        }
+
+        .full-width {
+            grid-column: 1 / -1; /* Ocupa as duas colunas */
+        }
+
+        /* Separadores Visuais */
+        .section-title {
+            grid-column: 1 / -1;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-green);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 15px;
+            margin-bottom: 5px;
         }
 
         /* Inputs e Labels */
-        .input-group {
-            margin-bottom: 28px;
-        }
-
         .input-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             font-size: 13px;
             color: var(--dark-green);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
         }
 
         .input-group label span {
@@ -178,41 +164,39 @@
         .input-group input[type="text"],
         .input-group input[type="email"],
         .input-group input[type="tel"],
-        .input-group select {
+        .input-group input[type="date"],
+        .input-group textarea {
             width: 100%;
-            padding: 16px 20px;
+            padding: 14px 16px;
             background-color: var(--input-bg);
             border: 2px solid transparent; 
-            border-radius: 12px; /* Campos mais arredondados */
-            font-size: 15px;
+            border-radius: 10px;
+            font-size: 14px;
             color: var(--text-dark);
             transition: all 0.3s ease;
             outline: none;
             font-family: 'Roboto', sans-serif;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.5;
         }
 
         .input-group input:focus,
-        .input-group select:focus {
+        .input-group textarea:focus {
             background-color: var(--white);
             border-color: var(--accent-mint);
             box-shadow: 0 0 0 4px rgba(21, 169, 139, 0.15);
-        }
-
-        .input-group input::placeholder {
-            color: #94A3B8;
         }
 
         /* Multi-Checkbox Premium (Estilo Tags/Pills) */
         .pills-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .pill-checkbox {
-            position: relative;
+            gap: 10px;
+            margin-top: 8px;
         }
 
         .pill-checkbox input[type="checkbox"] {
@@ -221,16 +205,16 @@
 
         .pill-checkbox label {
             display: inline-block;
-            padding: 12px 20px;
+            padding: 10px 16px;
             background-color: var(--input-bg);
             border: 2px solid transparent;
             border-radius: 50px;
             font-family: 'Roboto', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             user-select: none;
         }
 
@@ -239,46 +223,39 @@
             color: var(--dark-green);
         }
 
-        /* Estado Selecionado da Tag */
         .pill-checkbox input[type="checkbox"]:checked + label {
             background-color: var(--dark-green);
             color: var(--white);
             border-color: var(--dark-green);
-            box-shadow: 0 6px 15px rgba(0, 56, 43, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 56, 43, 0.2);
+            transform: translateY(-1px);
         }
 
         /* Botão de Enviar */
         button[type="submit"] {
-            width: 100%;
+            grid-column: 1 / -1;
             background: linear-gradient(135deg, var(--accent-mint) 0%, #129379 100%);
             color: var(--white);
             border: none;
             padding: 18px;
             font-family: 'Poppins', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            letter-spacing: 0.5px;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 12px;
-            margin-top: 20px;
-            box-shadow: 0 10px 25px rgba(21, 169, 139, 0.4);
+            margin-top: 15px;
+            box-shadow: 0 8px 20px rgba(21, 169, 139, 0.3);
         }
 
         button[type="submit"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(21, 169, 139, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(21, 169, 139, 0.4);
             background: linear-gradient(135deg, #16b897 0%, #108069 100%);
-        }
-
-        button[type="submit"]:active {
-            transform: translateY(1px);
-            box-shadow: 0 5px 15px rgba(21, 169, 139, 0.4);
         }
 
         button[type="submit"]:disabled {
@@ -288,39 +265,28 @@
             box-shadow: none;
         }
 
-        /* Loader do Botão */
+        /* Loader & Mensagens */
         .loader {
             border: 3px solid rgba(255,255,255,0.3);
             border-top: 3px solid var(--white);
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             animation: spin 1s linear infinite;
             display: none;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Mensagens de Sucesso/Erro */
         .message-box {
             display: none;
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 30px;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 25px;
             text-align: center;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            font-size: 15px;
-            animation: fadeIn 0.5s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            font-size: 14px;
         }
 
         .message-box.success {
@@ -338,7 +304,7 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             font-size: 14px;
             color: var(--text-muted);
             margin-top: auto;
@@ -350,113 +316,139 @@
             color: var(--accent-mint);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
         }
 
-        footer a:hover {
-            color: var(--dark-green);
-        }
-
-        /* Responsividade */
+        /* Responsividade para Celulares */
         @media (max-width: 768px) {
-            .hero-background {
-                height: 40vh;
+            .form-grid {
+                grid-template-columns: 1fr; /* Volta para 1 coluna no celular */
+                gap: 15px;
             }
             .form-container {
-                padding: 40px 25px;
-                border-radius: 20px;
+                padding: 30px 20px;
             }
-            .form-header h1 {
-                font-size: 26px;
-            }
-            .logo img {
-                max-height: 85px; /* Ajuste proporcional no telemóvel/celular */
-            }
+            .logo img { max-height: 70px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Fundo verde escuro estilizado -->
     <div class="hero-background"></div>
 
     <header>
         <a href="#" class="logo">
-            <!-- Logo oficial atualizado -->
-            <img src="https://scontent.fcgh15-1.fna.fbcdn.net/v/t39.30808-6/488143226_1316475856937166_8906887639841739232_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeEBcMzWq60nCApPqNEL2osKy_36Cvefy2TL_foK95_LZDW6EwqecL3CWnBW4zI2AkX8woQRUWCGzbr1a4cxOKEU&_nc_ohc=sLMcd_AEWhYQ7kNvwHxXKZ2&_nc_oc=AdnAo1080tzk_CaDUyf3GQpSFd7LlnsYvcqHybZyRkWVn0JHWWh4SUi8TkabA8s0NJwhBPPJMLwP9Ik7543LLEpa&_nc_zt=23&_nc_ht=scontent.fcgh15-1.fna&_nc_gid=MLAk3kg7hRy7mzogsztlEw&oh=00_AfvqBwBs5xortIzagTfDhr23XFxGVtBxX-KR7gVerLP50A&oe=69A296E8" alt="Toyo Ink / Artience Logo">
+            <img src="img/toyo-ink-brasil.png" alt="Toyo Ink / Artience Logo">
         </a>
     </header>
 
     <main>
         <div class="form-container">
             <div class="form-header">
-                <h1>Captação de Contatos</h1>
-                <p>Registe as informações do cliente para enviarmos novidades e soluções da Artience / Toyo Ink.</p>
+                <h1>Ficha de Visita</h1>
+                <p>Registo comercial e acompanhamento de clientes.</p>
             </div>
 
             <div id="statusMessage" class="message-box"></div>
 
-            <form id="leadForm">
+            <form id="leadForm" class="form-grid">
+                
+                <!-- Cabeçalho do Formulário Original -->
                 <div class="input-group">
-                    <label for="nome">Nome do Cliente <span>*</span></label>
-                    <input type="text" id="nome" name="nome" required placeholder="Ex: João da Silva">
+                    <label for="cliente">Cliente <span>*</span></label>
+                    <input type="text" id="cliente" name="cliente" required placeholder="Nome do Cliente Principal">
                 </div>
 
                 <div class="input-group">
-                    <label for="empresa">Empresa <span>*</span></label>
-                    <input type="text" id="empresa" name="empresa" required placeholder="Nome da empresa">
+                    <label for="data_visita">Data da Visita <span>*</span></label>
+                    <!-- Campo de data preenche automaticamente o dia de hoje via JS -->
+                    <input type="date" id="data_visita" name="data_visita" required>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="vendedor">Vendedor <span>*</span></label>
+                    <input type="text" id="vendedor" name="vendedor" required placeholder="Nome do Vendedor">
+                </div>
+
+                <!-- Sessão: Dados do Cliente -->
+                <h3 class="section-title">Dados do Cliente</h3>
+
+                <div class="input-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Razão Social / Nome Fantasia">
                 </div>
 
                 <div class="input-group">
-                    <label for="email">E-mail Corporativo <span>*</span></label>
-                    <input type="email" id="email" name="email" required placeholder="joao@empresa.com.br">
+                    <label for="pais_cidade">País/Cidade</label>
+                    <input type="text" id="pais_cidade" name="pais_cidade" placeholder="Ex: Brasil / São Paulo">
                 </div>
 
                 <div class="input-group">
-                    <label for="telefone">Telefone / WhatsApp <span>*</span></label>
-                    <input type="tel" id="telefone" name="telefone" required placeholder="(11) 99999-9999" maxlength="15">
+                    <label for="contato">Contato (Nome)</label>
+                    <input type="text" id="contato" name="contato" placeholder="Nome do contato na empresa">
                 </div>
 
                 <div class="input-group">
-                    <label>Área de Interesse Principal <span>(Selecione uma ou mais)</span></label>
-                    <!-- Checkboxes transformados em Tags (Pills) modernas -->
+                    <label for="telefone">Telefone / WhatsApp</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" maxlength="15">
+                </div>
+
+                <div class="input-group">
+                    <label for="cargo">Cargo</label>
+                    <input type="text" id="cargo" name="cargo" placeholder="Função do contato">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="email@empresa.com.br">
+                </div>
+
+                <!-- Sessão: Relatórios -->
+                <h3 class="section-title">Anotações da Visita</h3>
+
+                <div class="input-group full-width">
+                    <label for="relatorio">Relatório da visita</label>
+                    <textarea id="relatorio" name="relatorio" placeholder="Escreva aqui os principais pontos discutidos durante a visita..."></textarea>
+                </div>
+
+                <div class="input-group full-width">
+                    <label for="followup">Follow-up / Próximas ações</label>
+                    <textarea id="followup" name="followup" placeholder="Quais os próximos passos? (Ex: Enviar orçamento, ligar na terça-feira...)"></textarea>
+                </div>
+
+                <!-- Sessão: Segmento de Mercado e Tecnologia -->
+                <h3 class="section-title">Segmento de Mercado e Tecnologia</h3>
+                
+                <div class="input-group full-width">
                     <div class="pills-group">
                         <div class="pill-checkbox">
-                            <input type="checkbox" id="area1" name="area_interesse" value="Impressão Offset">
-                            <label for="area1">Impressão Offset</label>
+                            <input type="checkbox" id="seg_embalagem" name="segmento" value="Embalagem Offset">
+                            <label for="seg_embalagem">Embalagem Offset</label>
                         </div>
                         <div class="pill-checkbox">
-                            <input type="checkbox" id="area2" name="area_interesse" value="Embalagens Flexíveis">
-                            <label for="area2">Embalagens Flexíveis</label>
+                            <input type="checkbox" id="seg_comercial" name="segmento" value="Comercial">
+                            <label for="seg_comercial">Comercial</label>
                         </div>
                         <div class="pill-checkbox">
-                            <input type="checkbox" id="area3" name="area_interesse" value="Rótulos e Etiquetas">
-                            <label for="area3">Rótulos e Etiquetas</label>
+                            <input type="checkbox" id="seg_editorial" name="segmento" value="Editorial">
+                            <label for="seg_editorial">Editorial</label>
                         </div>
                         <div class="pill-checkbox">
-                            <input type="checkbox" id="area4" name="area_interesse" value="Impressão Digital">
-                            <label for="area4">Impressão Digital</label>
+                            <input type="checkbox" id="seg_rotogravura" name="segmento" value="Rotogravura">
+                            <label for="seg_rotogravura">Rotogravura</label>
                         </div>
                         <div class="pill-checkbox">
-                            <input type="checkbox" id="area5" name="area_interesse" value="Outros">
-                            <label for="area5">Outros</label>
+                            <input type="checkbox" id="seg_flexografia" name="segmento" value="Flexografia">
+                            <label for="seg_flexografia">Flexografia</label>
+                        </div>
+                        <div class="pill-checkbox">
+                            <input type="checkbox" id="seg_digital" name="segmento" value="Digital Inkjet">
+                            <label for="seg_digital">Digital Inkjet</label>
                         </div>
                     </div>
                 </div>
 
-                <div class="input-group">
-                    <label for="como_conheceu">Como o cliente nos conheceu?</label>
-                    <select id="como_conheceu" name="como_conheceu">
-                        <option value="">Selecione uma opção...</option>
-                        <option value="Feira de Exposição">Feira de Exposição / Evento</option>
-                        <option value="Indicação">Indicação</option>
-                        <option value="Redes Sociais">Redes Sociais</option>
-                        <option value="Site">Site Oficial</option>
-                    </select>
-                </div>
-
                 <button type="submit" id="submitBtn">
-                    <span id="btnText">Salvar Contato</span>
+                    <span id="btnText">Salvar Ficha de Visita</span>
                     <div class="loader" id="btnLoader"></div>
                 </button>
             </form>
@@ -472,25 +464,18 @@
     </footer>
 
     <script>
-        // Atualizar o ano dinamicamente no rodapé
+        // Preencher a data automaticamente com o dia de hoje
+        document.getElementById('data_visita').valueAsDate = new Date();
         document.getElementById('year').textContent = new Date().getFullYear();
 
         // Máscara de Telefone (WhatsApp)
         const telefoneInput = document.getElementById('telefone');
-        
         telefoneInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             let formattedValue = '';
-            
-            if (value.length > 0) {
-                formattedValue = '(' + value.substring(0, 2);
-            }
-            if (value.length > 2) {
-                formattedValue += ') ' + value.substring(2, 7);
-            }
-            if (value.length > 7) {
-                formattedValue += '-' + value.substring(7, 11);
-            }
+            if (value.length > 0) formattedValue = '(' + value.substring(0, 2);
+            if (value.length > 2) formattedValue += ') ' + value.substring(2, 7);
+            if (value.length > 7) formattedValue += '-' + value.substring(7, 11);
             e.target.value = formattedValue;
         });
 
@@ -501,8 +486,8 @@
         const btnLoader = document.getElementById('btnLoader');
         const statusMessage = document.getElementById('statusMessage');
 
-        // IMPORTANTE: Substitua a URL abaixo pela URL gerada pelo seu Google Apps Script
-        const SCRIPT_URL = 'COLOQUE_SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI';
+        // URL DE PRODUÇÃO CONECTADA À SUA PLANILHA DA TOYO INK
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwj9_-e3lOm51Xr78skTiuXg7-OZ4u28IabySIip1ZWbeqai6rq-SSRRYWaFyNb9X71wg/exec';
 
         function showMessage(text, isError = false) {
             statusMessage.textContent = text;
@@ -514,32 +499,25 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
 
-            // Validação de segurança para testes
-            if(SCRIPT_URL === 'COLOQUE_SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI') {
-                showMessage('Modo de Teste: O visual está maravilhoso e a lógica funciona! Para gravar dados reais, insira a URL do Google Apps Script no código.', true);
-                return;
-            }
-
-            // Alterar estado do botão para "A carregar"
             submitBtn.disabled = true;
-            btnText.textContent = 'A salvar...';
+            btnText.textContent = 'A salvar ficha...';
             btnLoader.style.display = 'block';
             statusMessage.style.display = 'none';
 
             const formData = new FormData(form);
             
-            // Capturar as áreas de interesse selecionadas e transformar num único texto
-            const selectedAreas = Array.from(form.querySelectorAll('input[name="area_interesse"]:checked'))
+            // Juntar os segmentos selecionados
+            const selectedSegments = Array.from(form.querySelectorAll('input[name="segmento"]:checked'))
                 .map(cb => cb.value)
                 .join(', ');
-            formData.set('area_interesse', selectedAreas);
+            formData.set('segmento', selectedSegments);
 
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
                 .then(response => {
-                    showMessage('Sucesso! O contato foi salvo na planilha.');
+                    showMessage('Sucesso! A ficha de visita foi guardada na planilha.');
                     form.reset();
-                    // Remover a seleção visual das tags (Pills)
-                    document.querySelectorAll('input[name="area_interesse"]').forEach(cb => cb.checked = false);
+                    document.getElementById('data_visita').valueAsDate = new Date(); // Mantém a data no dia de hoje após o reset
+                    document.querySelectorAll('input[name="segmento"]').forEach(cb => cb.checked = false);
                     setTimeout(() => { statusMessage.style.display = 'none'; }, 5000);
                 })
                 .catch(error => {
@@ -548,7 +526,7 @@
                 })
                 .finally(() => {
                     submitBtn.disabled = false;
-                    btnText.textContent = 'Salvar Contato';
+                    btnText.textContent = 'Salvar Ficha de Visita';
                     btnLoader.style.display = 'none';
                 });
         });
